@@ -1,0 +1,2 @@
+E:/flutter2/school_mgmt/android/app/.cxx/RelWithDebInfo/1915626f/armeabi-v7a/CMakeFiles/edit_cache.dir
+E:/flutter2/school_mgmt/android/app/.cxx/RelWithDebInfo/1915626f/armeabi-v7a/CMakeFiles/rebuild_cache.dir
