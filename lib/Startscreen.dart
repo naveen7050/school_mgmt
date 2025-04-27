@@ -37,7 +37,8 @@ class Startscreen extends StatelessWidget {
                       radius: 80,
                       child: Image.asset(
                         "assets/images/logo.jpg",
-                        height: 150,
+                        height: 130,
+                        fit: BoxFit.fill,
                       ),
                     ),
                   ],
@@ -54,12 +55,12 @@ class Startscreen extends StatelessWidget {
                     height: 100,
                   ),
                   const Text(
-                    "CREATIVE READER’S\nPUBLICATION",
+                    "SUNRISE PUBLIC SCHOOL",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Colors.blue,
-                      fontSize: 15,
+                      fontSize: 20,
                     ),
                   ),
                   const SizedBox(
@@ -67,7 +68,7 @@ class Startscreen extends StatelessWidget {
                   ),
                   //options
                   const Text(
-                    "Please select a option ",
+                    "Please select an option ",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,

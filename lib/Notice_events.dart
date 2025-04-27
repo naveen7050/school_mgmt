@@ -15,10 +15,10 @@ class _Notice_EventsState extends State<Notice_Events> {
   XFile? _imagefile;
   final ImagePicker imagePicker = ImagePicker();
 
-  bool _isUploading = false; // For progress indicator
+  bool _isUploading = false;
+  String? _downloadURL;
 
   Future<void> _pickedimage() async {
-    // Ask user to pick image from camera or gallery
     final source = await showModalBottomSheet<ImageSource>(
       context: context,
       builder: (context) => Column(
@@ -43,6 +43,7 @@ class _Notice_EventsState extends State<Notice_Events> {
       if (pickedFile != null) {
         setState(() {
           _imagefile = pickedFile;
+          _downloadURL = null;
         });
         print("image path: ${_imagefile!.path}");
       }
@@ -63,6 +64,9 @@ class _Notice_EventsState extends State<Notice_Events> {
     try {
       await ref.putFile(File(_imagefile!.path));
       String downloadURL = await ref.getDownloadURL();
+      setState(() {
+        _downloadURL = downloadURL;
+      });
       print("Image uploaded! Download URL: $downloadURL");
     } catch (e) {
       print("Upload failed: $e");
@@ -71,6 +75,13 @@ class _Notice_EventsState extends State<Notice_Events> {
         _isUploading = false;
       });
     }
+  }
+
+  void _clearUploadedImage() {
+    setState(() {
+      _imagefile = null;
+      _downloadURL = null;
+    });
   }
 
   @override
@@ -90,23 +101,21 @@ class _Notice_EventsState extends State<Notice_Events> {
           ],
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(16),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
               children: [
                 Text(
                   'Enter Details',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                  ),
+                  style: TextStyle(fontSize: 18),
                 ),
               ],
             ),
             SizedBox(height: 10),
+
+            /// Image Picker with Optional Preview and Remove Icon
             GestureDetector(
               onTap: _pickedimage,
               child: Container(
@@ -116,26 +125,44 @@ class _Notice_EventsState extends State<Notice_Events> {
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.blue, width: 2),
                 ),
-                alignment: Alignment.center,
                 child: _imagefile != null
-                    ? Image.file(
-                        File(_imagefile!.path),
-                        fit: BoxFit.cover,
-                        width: double.infinity,
+                    ? Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          Image.file(
+                            File(_imagefile!.path),
+                            fit: BoxFit.cover,
+                          ),
+                          Positioned(
+                            top: 8,
+                            right: 8,
+                            child: GestureDetector(
+                              onTap: _clearUploadedImage,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Colors.black54,
+                                ),
+                                padding: EdgeInsets.all(4),
+                                child: Icon(Icons.close,
+                                    size: 20, color: Colors.white),
+                              ),
+                            ),
+                          ),
+                        ],
                       )
-                    : Text('Tap to select image'),
+                    : Center(child: Text('Tap to select image')),
               ),
             ),
+
             SizedBox(height: 20),
+
+            /// Pick Image Button
             ElevatedButton(
               onPressed: _pickedimage,
               child: Text(
                 'Upload Image',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 18,
-                  color: Colors.white,
-                ),
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
               ),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
@@ -145,7 +172,9 @@ class _Notice_EventsState extends State<Notice_Events> {
                 fixedSize: const Size(170, 50),
               ),
             ),
-            SizedBox(height: 150),
+            SizedBox(height: 50),
+
+            /// Upload to Firebase Button
             _isUploading
                 ? CircularProgressIndicator()
                 : ElevatedButton(

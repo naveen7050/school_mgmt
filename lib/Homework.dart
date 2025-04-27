@@ -127,24 +127,7 @@ class _Notice_EventsState extends State<Homework> {
               ),
             ),
             SizedBox(height: 20),
-            // ElevatedButton(
-            //   onPressed: _pickedimage,
-            //   child: Text(
-            //     'Upload image',
-            //     style: TextStyle(
-            //       fontWeight: FontWeight.w600,
-            //       fontSize: 18,
-            //       color: Colors.white,
-            //     ),
-            //   ),
-            //   style: ElevatedButton.styleFrom(
-            //     backgroundColor: Colors.blue,
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(20),
-            //     ),
-            //     fixedSize: const Size(170, 50),
-            //   ),
-            // ),
+            
             SizedBox(height: 50),
             _isUploading
                 ? CircularProgressIndicator()

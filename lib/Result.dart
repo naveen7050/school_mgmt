@@ -30,11 +30,13 @@ class Result extends StatelessWidget {
         padding: EdgeInsets.all(16),
         child: Column(
           children: [
-            _buildResultCard("first terminal"),
+            _buildResultCard("First terminal"),
             SizedBox(height: 10),
-            _buildResultCard("second terminal"),
+            _buildResultCard("Second terminal"),
             SizedBox(height: 10),
-            _buildResultCard("Third terminal")
+            _buildResultCard("Third terminal"),
+            SizedBox(height: 10),
+            _buildResultCard("Fourth terminal")
           ],
         ),
       ),

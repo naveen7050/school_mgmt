@@ -98,7 +98,7 @@ class Home extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                        "Empowering students, teachers, and parents with a smarter way to stay connected, informed, and inspired every day",
                         textAlign: TextAlign.center,
                         style: TextStyle(color: Colors.black, fontSize: 16),
                       ),
@@ -126,7 +126,7 @@ class Home extends StatelessWidget {
                     NeverScrollableScrollPhysics(), //prevent from gridview scrolling functionalities. after it gridview behave as a static layout.
                 children: [
                   _buildButton(context, Icons.check_circle_outline,
-                      "Attendance", Attendence()),
+                      "Attendance", Attendance()),
                   _buildButton(
                       context, Icons.home_work, "Homework", Homework()),
                   _buildButton(context, Icons.description, "Result", Result()),

@@ -97,7 +97,7 @@ class _LoginState extends State<Login> {
                         radius: 80,
                         child: Image.asset(
                           "assets/images/logo.jpg",
-                          height: 150,
+                          height: 15,
                         ),
                       ),
                     ],
@@ -112,7 +112,7 @@ class _LoginState extends State<Login> {
                 children: [
                   const SizedBox(height: 100),
                   const Text(
-                    "CREATIVE READER’S\nPUBLICATION",
+                    "SUNRISE PUBLIC SCHOOL",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
